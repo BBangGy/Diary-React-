@@ -10,15 +10,21 @@ import Edit from "./pages/Edit.jsx";
 const mockData = [
   {
     id: 1,
-    createdDate: new Date().getTime(),
+    createdDate: new Date("2024-07-25").getTime(),
     emotionId: 1,
     content: "1번 일기 내용",
   },
   {
     id: 2,
-    createdDate: new Date().getTime(),
+    createdDate: new Date("2024-07-24").getTime(),
     emotionId: 2,
     content: "2번 일기 내용",
+  },
+  {
+    id: 3,
+    createdDate: new Date("2024-06-22").getTime(),
+    emotionId: 3,
+    content: "3번 일기 내용",
   },
 ];
 
@@ -35,8 +41,8 @@ function reducer(state, action) {
   }
 }
 
-const DiaryStateContext = createContext();
-const DiasryDispatchContext = createContext();
+export const DiaryStateContext = createContext();
+export const DiaryDispatchContext = createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, mockData);
@@ -78,7 +84,7 @@ function App() {
   return (
     <>
       <DiaryStateContext.Provider value={data}>
-        <DiasryDispatchContext.Provider
+        <DiaryDispatchContext.Provider
           value={{
             onCreate,
             onDelete,
@@ -92,7 +98,7 @@ function App() {
             <Route path="/new" element={<New />} />
             <Route path="*" element={<Notfound />} />
           </Routes>
-        </DiasryDispatchContext.Provider>
+        </DiaryDispatchContext.Provider>
       </DiaryStateContext.Provider>
     </>
   );
